@@ -19,9 +19,9 @@ class PostCreate extends Component {
   }
 
   handleFormSubmit(props) {
-    const { title, description } = props;
+    const { title, description, date, eggCount } = props;
 
-    this.props.createPost({ title, description });
+    this.props.createPost({ title, description, date, eggCount });
   }
 
   render() {
@@ -41,6 +41,26 @@ class PostCreate extends Component {
           <Field
             name="description"
             placeholder="Description"
+            component={Input}
+            multiline
+            containerStyle={{ height: 70 }}
+          />
+        </Item>
+
+        <Item>
+          <Field
+            name="date"
+            placeholder="Date"
+            component={Input}
+            multiline
+            containerStyle={{ height: 70 }}
+          />
+        </Item>
+
+        <Item>
+          <Field
+            name="eggCount"
+            placeholder="Number of Eggs"
             component={Input}
             multiline
             containerStyle={{ height: 70 }}
@@ -71,7 +91,7 @@ class PostCreate extends Component {
 
 const validate = (props) => {
   const errors = {};
-  const fields = ['title', 'description'];
+  const fields = ['title', 'description', 'date', 'eggCount'];
 
   fields.forEach((f) => {
     if (!(f in props)) {

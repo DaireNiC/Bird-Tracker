@@ -33,9 +33,9 @@ class PostEdit extends Component {
   }
 
   handleFormSubmit(props) {
-    const { title, description, uid } = props;
+    const { title, description, date, eggCount, uid } = props;
 
-    this.props.updatePost({ title, description, uid });
+    this.props.updatePost({ title, description, date, eggCount, uid });
   }
 
   render() {
@@ -55,6 +55,26 @@ class PostEdit extends Component {
           <Field
             name="description"
             placeholder="Description"
+            component={Input}
+            multiline
+            containerStyle={{ height: 70 }}
+          />
+        </Item>
+
+        <Item>
+          <Field
+            name="date"
+            placeholder="Date"
+            component={Input}
+            multiline
+            containerStyle={{ height: 70 }}
+          />
+        </Item>
+
+        <Item>
+          <Field
+            name="eggCount"
+            placeholder="Number of Eggs"
             component={Input}
             multiline
             containerStyle={{ height: 70 }}
@@ -102,7 +122,7 @@ class PostEdit extends Component {
 
 const validate = (props) => {
   const errors = {};
-  const fields = ['title', 'description'];
+  const fields = ['title', 'description', 'date', 'eggCount'];
 
   fields.forEach((f) => {
     if (!(f in props)) {

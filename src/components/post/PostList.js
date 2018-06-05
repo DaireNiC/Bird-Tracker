@@ -28,7 +28,7 @@ class PostList extends Component {
 
     this.dataSource = ds.cloneWithRows(list);
   }
-
+//shows the row's title for each record
   renderRow(post) {
     const { title } = post;
 

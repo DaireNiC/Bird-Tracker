@@ -24,14 +24,14 @@ export const POST_LIST_GET_FAILURE = 'POST_LIST_GET_FAILURE';
  | Actions
  |--------------------------------------------------
  */
-export const createPost = ({ title, description }) => {
+export const createPost = ({ title, description, date, eggCount }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     dispatch({ type: POST_CREATE_REQUEST });
 
     firebase.database().ref(`/users/${currentUser.uid}/post`)
-      .push({ title, description })
+      .push({ title, description, date, eggCount })
       .then(() => {
         dispatch({ type: POST_CREATE_SUCCESS });
 
@@ -43,14 +43,14 @@ export const createPost = ({ title, description }) => {
   };
 };
 
-export const updatePost = ({ title, description, uid }) => {
+export const updatePost = ({ title, description, date, eggCount, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     dispatch({ type: POST_UPDATE_REQUEST });
 
     firebase.database().ref(`/users/${currentUser.uid}/post/${uid}`)
-      .set({ title, description })
+      .set({ title, description, date, eggCount })
       .then(() => {
         dispatch({ type: POST_UPDATE_SUCCESS });
 
